@@ -1,4 +1,4 @@
 .header-content button {
-animation: fadeIn 3s;
-color: lightskyblue;
+	border: 4px solid lightskyblue;
+	padding: 2px;
 }

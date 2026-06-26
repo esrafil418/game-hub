@@ -55,3 +55,46 @@ export const assets: Assets = {
 	//! url img
 	Black_Myth: urlImages.Black_Myth,
 } as const;
+
+export const category = [
+	{
+		category_id: 1,
+		category_name: "Action",
+		category_image: action,
+	},
+	{
+		category_id: 2,
+		category_name: "Adventure",
+		category_image: adventure,
+	},
+	{
+		category_id: 3,
+		category_name: "Horror",
+		category_image: horror,
+	},
+	{
+		category_id: 4,
+		category_name: "Multiplayer",
+		category_image: multiplayer,
+	},
+	{
+		category_id: 5,
+		category_name: "Puzzle",
+		category_image: puzzle,
+	},
+	{
+		category_id: 6,
+		category_name: "Sports",
+		category_image: sports,
+	},
+	{
+		category_id: 7,
+		category_name: "Zombies",
+		category_image: zombies,
+	},
+	{
+		category_id: 8,
+		category_name: "Online",
+		category_image: onlinebattle,
+	},
+];
