@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Header from "../../components/header/Header";
 import ExploreCategory from "../../components/explore-menu/ExploreCategory";
+import Games from "../../components/games/Games";
 
 export default function Home() {
-	const [categorylist, setCategorylist] = useState("All");
+	const [genre, setGenre] = useState("All");
 	return (
 		<div>
 			<Header />
-			<ExploreCategory
-				categorylist={categorylist}
-				setCategorylist={setCategorylist}
-			/>
+			<ExploreCategory genre={genre} setGenre={setGenre} />
+			<Games genre={genre} />
 		</div>
 	);
 }

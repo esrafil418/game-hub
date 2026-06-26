@@ -1,13 +1,13 @@
 import { category } from "../../assets/assets";
 
 type ExploreCategoryProps = {
-	categorylist: string;
-	setCategorylist: React.Dispatch<React.SetStateAction<string>>;
+	genre: string;
+	setGenre: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function ExploreCategory({
-	categorylist,
-	setCategorylist,
+	genre,
+	setGenre,
 }: ExploreCategoryProps) {
 	return (
 		<div className="flex flex-col gap-4 md:gap-5" id="explore-category">
@@ -26,7 +26,7 @@ export default function ExploreCategory({
 						type="button"
 						key={item.category_id}
 						onClick={() =>
-							setCategorylist((prev) =>
+							setGenre((prev) =>
 								prev === item.category_name ? "All" : item.category_name,
 							)
 						}
@@ -35,7 +35,7 @@ export default function ExploreCategory({
 						<div className="w-full aspect-square rounded-full shadow-md hover:shadow-lg transition-shadow duration-200">
 							<img
 								className={`w-full h-full object-cover cursor-pointer transition duration-200 hover:scale-110 rounded-full ${
-									categorylist === item.category_name
+									genre === item.category_name
 										? "outline outline-4 outline-sky-300 outline-offset-2"
 										: ""
 								}`}
