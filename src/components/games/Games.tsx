@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { StoreContext } from "../../context/storeContext";
-import { category } from "../../assets/assets"; // <-- import category
+import { category } from "../../assets/assets";
 import GameItem, { type GameItemProps } from "../game-item/GameItem";
 
 type GamesProps = {
