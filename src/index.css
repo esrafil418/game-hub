@@ -19,3 +19,16 @@
 		@apply w-4/5 mx-auto;
 	}
 }
+
+.header-img {
+	background-image: url("./assets/header.jpg");
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
