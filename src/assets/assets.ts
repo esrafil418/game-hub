@@ -9,11 +9,17 @@ import onlinebattle from "./Gaming-Cat/onlinebattle.png";
 
 import header from "./header.jpg";
 import app_store from "./app_store.png";
-import play_store from "./parcel_icon.png";
+import play_store from "./play_store.png";
 import rating_starts from "./rating_starts.png";
 import parcel_icon from "./parcel_icon.png";
 
+export const urlImages = {
+	Black_Myth:
+		"https://cdn.displate.com/artwork/324x454/2026-03-12/11e17cec-2aa9-402e-b1eb-ee3a188d818b.jpg",
+} as const;
+
 interface Assets {
+	//! local img
 	action: string;
 	adventure: string;
 	horror: string;
@@ -27,9 +33,12 @@ interface Assets {
 	play_store: string;
 	rating_starts: string;
 	parcel_icon: string;
+	//! url img
+	Black_Myth: string;
 }
 
 export const assets: Assets = {
+	//! local img
 	action,
 	adventure,
 	horror,
@@ -43,4 +52,6 @@ export const assets: Assets = {
 	play_store,
 	rating_starts,
 	parcel_icon,
+	//! url img
+	Black_Myth: urlImages.Black_Myth,
 } as const;

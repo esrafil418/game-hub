@@ -1,0 +1,13 @@
+.navbar-search-icon {
+	position: relative;
+}
+
+.dot {
+	position: absolute;
+	min-width: 10px;
+	min-height: 10px;
+	background-color: lightskyblue;
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+}
