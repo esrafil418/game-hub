@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer base {
+	body {
+		@apply min-h-screen;
+	}
+
+	a {
+		@apply no-underline text-inherit;
+	}
+}
