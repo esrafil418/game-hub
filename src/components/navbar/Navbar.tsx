@@ -1,6 +1,7 @@
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/storeContext";
 
 interface NavbarProps {
 	setShowLogin: (value: boolean) => void;
@@ -9,6 +10,7 @@ interface NavbarProps {
 export default function Navbar({ setShowLogin }: NavbarProps) {
 	const [menu, setMenu] = useState("home");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { getTotalCartAmount } = useContext(StoreContext);
 
 	const menuItems = [
 		{ id: "home", label: "Home", href: "#" },
@@ -72,7 +74,13 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 					<Link to="/cart">
 						<ShoppingCart className="w-5 h-5 cursor-pointer hover:text-red-700 transition" />
 					</Link>
-					<div className="absolute min-w-2.5 min-h-2.5 bg-sky-300 rounded-md -top-2 -right-2"></div>
+					<div
+						className={
+							getTotalCartAmount() === 0
+								? ""
+								: "absolute min-w-2.5 min-h-2.5 bg-sky-300 rounded-md -top-2 -right-2"
+						}
+					></div>
 				</div>
 
 				<button

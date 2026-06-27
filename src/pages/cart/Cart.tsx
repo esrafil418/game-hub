@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { StoreContext } from "../../context/storeContext";
 import type { GameItemProps } from "../../components/game-item/GameItem";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 	const { cartItems, game_list, removeFromCart, getTotalCartAmount } =
 		useContext(StoreContext);
+
+	const navigate = useNavigate();
 	return (
 		<div className="mt-25 px-4 md:px-6 lg:px-8">
 			<div className="items">
@@ -85,6 +88,7 @@ export default function Cart() {
 					</div>
 					<button
 						type="button"
+						onClick={() => navigate("/order")}
 						className="border-none text-white bg-turquoise w-full md:w-[max(15vw,200px)] py-3 rounded-sm cursor-pointer bg-teal-300 hover:bg-teal-500 hover:shadow-lg transition-all duration-200"
 					>
 						Proceed to Checkout
