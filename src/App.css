@@ -1,11 +1,3 @@
-.game-item-image {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 6px;
-	border-radius: 50px;
-	background-color: white;
+.game {
+margin-top: 100px;
 }
