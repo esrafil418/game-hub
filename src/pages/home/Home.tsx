@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../../components/header/Header";
 import ExploreCategory from "../../components/explore-menu/ExploreCategory";
 import Games from "../../components/games/Games";
+import AppDownload from "../../components/app-download/AppDownload";
 
 export default function Home() {
 	const [genre, setGenre] = useState("All");
@@ -10,6 +11,7 @@ export default function Home() {
 			<Header />
 			<ExploreCategory genre={genre} setGenre={setGenre} />
 			<Games genre={genre} />
+			<AppDownload />
 		</div>
 	);
 }
