@@ -78,12 +78,14 @@ export default function Cart() {
 						<hr className="my-2.5" />
 						<div className="flex justify-between text-gray-600">
 							<p>Delivery Fee</p>
-							<p>${2}</p>
+							<p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
 						</div>
 						<hr className="my-2.5" />
 						<div className="flex justify-between text-gray-600">
 							<p className="font-bold">Total</p>
-							<p>${getTotalCartAmount() + 2}</p>
+							<p>
+								${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+							</p>
 						</div>
 					</div>
 					<button
