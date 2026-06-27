@@ -1,5 +1,6 @@
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface NavbarProps {
 	setShowLogin: (value: boolean) => void;
@@ -37,13 +38,11 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 
 	return (
 		<nav className="py-5 px-4 sm:px-8 flex justify-between items-center relative bg-white">
-			<a
-				id="navbar"
-				href="#navbar"
-				className="font-bold text-2xl sm:text-3xl text-red-700 hover:text-red-800 transition"
-			>
-				Game Hub
-			</a>
+			<Link to="/">
+				<div className="font-bold text-2xl sm:text-3xl text-red-700 hover:text-red-800 transition">
+					Game Hub
+				</div>
+			</Link>
 
 			{/* Desktop Menu */}
 			<div className="hidden lg:flex list-none gap-5 text-[#49557e] text-[18px]">
@@ -70,7 +69,9 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 			<div className="flex items-center gap-4 sm:gap-10">
 				<Search className="w-5 h-5 cursor-pointer hover:text-red-700 transition" />
 				<div className="relative">
-					<ShoppingCart className="w-5 h-5 cursor-pointer hover:text-red-700 transition" />
+					<Link to="/cart">
+						<ShoppingCart className="w-5 h-5 cursor-pointer hover:text-red-700 transition" />
+					</Link>
 					<div className="absolute min-w-2.5 min-h-2.5 bg-sky-300 rounded-md -top-2 -right-2"></div>
 				</div>
 
