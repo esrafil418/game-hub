@@ -6,23 +6,51 @@ export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const menuItems = [
-		{ id: "home", label: "Home" },
-		{ id: "categories", label: "Categories" },
-		{ id: "mobile app", label: "Mobile App" },
-		{ id: "contact us", label: "Contact Us" },
+		{ id: "home", label: "Home", href: "#" },
+		{ id: "categories", label: "Categories", href: "#explore-category" },
+		{ id: "mobile app", label: "Mobile App", href: "#app-download" },
+		{ id: "contact us", label: "Contact Us", href: "#footer" },
 	];
+
+	// Smooth scroll function
+	const handleScroll = (
+		e: React.MouseEvent<HTMLAnchorElement>,
+		href: string,
+	) => {
+		e.preventDefault();
+		const targetId = href.replace("#", "");
+		const element = document.getElementById(targetId);
+
+		if (element) {
+			element.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			});
+		}
+
+		setIsMenuOpen(false);
+	};
 
 	return (
 		<nav className="py-5 px-4 sm:px-8 flex justify-between items-center relative bg-white">
-			<h2 className="font-bold text-2xl sm:text-3xl text-red-700">Game Hub</h2>
+			<a
+				id="navbar"
+				href="#navbar"
+				className="font-bold text-2xl sm:text-3xl text-red-700 hover:text-red-800 transition"
+			>
+				Game Hub
+			</a>
 
 			{/* Desktop Menu */}
 			<div className="hidden lg:flex list-none gap-5 text-[#49557e] text-[18px]">
 				{menuItems.map((item) => (
-					<button
+					<a
 						key={item.id}
-						type="button"
-						onClick={() => setMenu(item.id)}
+						href={item.href}
+						onClick={(e) => {
+							handleScroll(e, item.href);
+							setMenu(item.id);
+						}}
 						className={
 							menu === item.id
 								? "pb-0.5 border-b-2 border-[#49557e] cursor-pointer"
@@ -30,7 +58,7 @@ export default function Navbar() {
 						}
 					>
 						{item.label}
-					</button>
+					</a>
 				))}
 			</div>
 
@@ -68,19 +96,18 @@ export default function Navbar() {
 			{isMenuOpen && (
 				<div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden flex flex-col p-6 gap-4 text-[#49557e] z-50 border-t">
 					{menuItems.map((item) => (
-						<button
-							type="button"
+						<a
 							key={item.id}
-							onClick={() => {
-								setMenu(item.id);
-								setIsMenuOpen(false);
-							}}
+							href={item.href}
+							onClick={(e) => handleScroll(e, item.href)}
 							className={`text-left py-2 text-lg ${
-								menu === item.id ? "text-red-700 font-semibold" : ""
+								menu === item.id
+									? "text-red-700 font-semibold"
+									: "hover:text-red-700"
 							}`}
 						>
 							{item.label}
-						</button>
+						</a>
 					))}
 					<hr className="my-2" />
 					<button
