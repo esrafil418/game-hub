@@ -7,17 +7,17 @@ export default function Navbar() {
 
 	const menuItems = [
 		{ id: "home", label: "Home" },
-		{ id: "menu", label: "Menu" },
+		{ id: "categories", label: "Categories" },
 		{ id: "mobile app", label: "Mobile App" },
 		{ id: "contact us", label: "Contact Us" },
 	];
 
 	return (
-		<nav className="py-5 px-4 sm:px-8 flex justify-between items-center relative bg-white shadow-sm">
+		<nav className="py-5 px-4 sm:px-8 flex justify-between items-center relative bg-white">
 			<h2 className="font-bold text-2xl sm:text-3xl text-red-700">Game Hub</h2>
 
 			{/* Desktop Menu */}
-			<div className="hidden md:flex list-none gap-5 text-[#49557e] text-[18px]">
+			<div className="hidden lg:flex list-none gap-5 text-[#49557e] text-[18px]">
 				{menuItems.map((item) => (
 					<button
 						key={item.id}
@@ -42,12 +42,16 @@ export default function Navbar() {
 					<div className="absolute min-w-2.5 min-h-2.5 bg-sky-300 rounded-md -top-2 -right-2"></div>
 				</div>
 
-				<button className="hidden sm:block bg-transparent text-[16px] text-[#49557e] border border-sky-300 px-6 sm:px-7.5 py-2.5 rounded-full cursor-pointer hover:bg-rose-50 hover:border-red-700 transition duration-300">
+				<button
+					type="button"
+					className="hidden sm:block bg-transparent text-[16px] text-[#49557e] border border-sky-300 px-6 sm:px-7.5 py-2.5 rounded-full cursor-pointer hover:bg-rose-50 hover:border-red-700 transition duration-300"
+				>
 					Sign In
 				</button>
 
 				{/* Hamburger Menu Button */}
 				<button
+					type="button"
 					className="md:hidden p-1"
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
 					aria-label="Toggle menu"
