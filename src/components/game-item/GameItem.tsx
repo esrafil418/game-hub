@@ -56,7 +56,7 @@ export default function GameItem({
 						className="w-16"
 					/>
 				</div>
-				<p className="text-gray-500 text-xs">{desc}</p>
+				<p className="text-gray-500 text-xs line-clamp-2">{desc}</p>
 				<p className="text-red-500 text-xl font-medium my-2.5">${price}</p>
 			</div>
 		</div>

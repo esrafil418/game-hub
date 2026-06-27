@@ -1,7 +1,11 @@
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-export default function Navbar() {
+interface NavbarProps {
+	setShowLogin: (value: boolean) => void;
+}
+
+export default function Navbar({ setShowLogin }: NavbarProps) {
 	const [menu, setMenu] = useState("home");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -72,6 +76,7 @@ export default function Navbar() {
 
 				<button
 					type="button"
+					onClick={() => setShowLogin(true)}
 					className="hidden sm:block bg-transparent text-[16px] text-[#49557e] border border-sky-300 px-6 sm:px-7.5 py-2.5 rounded-full cursor-pointer hover:bg-rose-50 hover:border-red-700 transition duration-300"
 				>
 					Sign In
@@ -112,6 +117,7 @@ export default function Navbar() {
 					<hr className="my-2" />
 					<button
 						type="button"
+						onClick={() => setShowLogin(true)}
 						className="border border-sky-300 px-6 py-3 rounded-full text-center hover:bg-rose-50 hover:border-red-700 transition"
 					>
 						Sign In

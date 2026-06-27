@@ -1,7 +1,5 @@
-.game {
-	width: max(30vw, 120px);
-	max-width: 180px;
-	transition: 0.5s;
+.button {
+	color: tomato;
+	font-weight: 500;
 	cursor: pointer;
 }
-
