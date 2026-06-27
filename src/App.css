@@ -1,7 +1,8 @@
 .cart {
-	display: grid;
-	grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
-	align-items: center;
-	color: grey;
-	font-size: max(1vw, 12px);
+	width: max(10vw, 150px);
+	padding: 12px 5px;
+	background-color: black;
+	border: none;
+	color: white;
+	border-radius: 4px;
 }

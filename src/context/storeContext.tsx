@@ -8,6 +8,7 @@ interface StoreContextType {
 	setCartItems: React.Dispatch<React.SetStateAction<{ [key: number]: number }>>;
 	addToCart: (itemId: number) => void;
 	removeFromCart: (itemId: number) => void;
+	getTotalCartAmount: () => number;
 }
 
 export const StoreContext = createContext<StoreContextType | null>(null);
@@ -31,9 +32,20 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 	};
 
-	useEffect(() => {
-		console.log(cartItems);
-	}, [cartItems]);
+	const getTotalCartAmount = () => {
+		let totalAmount = 0;
+		for (const item in cartItems) {
+			if (cartItems[item] > 0) {
+				const itemInfo = game_list.find(
+					(product) => product.id === Number(item),
+				);
+				if (itemInfo) {
+					totalAmount += itemInfo.price * cartItems[item];
+				}
+			}
+		}
+		return totalAmount;
+	};
 
 	const contextValue: StoreContextType = {
 		game_list,
@@ -41,6 +53,7 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		setCartItems,
 		addToCart,
 		removeFromCart,
+		getTotalCartAmount,
 	};
 
 	return (
