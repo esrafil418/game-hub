@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { game_list } from "../assets/assets";
 import type { GameItemProps } from "../components/game-item/GameItem";
+import axios from "axios";
 
 interface StoreContextType {
 	game_list: GameItemProps[];
@@ -24,6 +24,7 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 	const [cartItems, setCartItems] = useState<{ [key: number]: number }>({});
 	const URL = "http://localhost:4000";
 	const [token, setToken] = useState("");
+	const [game_list, setGameList] = useState<GameItemProps[]>([]);
 
 	const addToCart = (itemId: number) => {
 		if (!cartItems[itemId]) {
@@ -42,7 +43,7 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		for (const item in cartItems) {
 			if (cartItems[item] > 0) {
 				const itemInfo = game_list.find(
-					(product) => product.id === Number(item),
+					(product) => product._id === Number(item),
 				);
 				if (itemInfo) {
 					totalAmount += itemInfo.price * cartItems[item];
@@ -52,10 +53,21 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		return totalAmount;
 	};
 
+	const fetchGameList = async () => {
+		const response = await axios.get(URL + "/api/game/list");
+		setGameList(response.data.data);
+	};
+
 	useEffect(() => {
-		if (localStorage.getItem("token")) {
-			setToken(localStorage.getItem("token"));
+		const storedToken = localStorage.getItem("token");
+		if (storedToken) {
+			setToken(storedToken);
 		}
+
+		async function loadData() {
+			await fetchGameList();
+		}
+		loadData();
 	}, []);
 
 	const contextValue: StoreContextType = {

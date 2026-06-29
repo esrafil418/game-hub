@@ -54,8 +54,8 @@ export default function Games({ genre }: GamesProps) {
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7.5 gap-7.5 gap-y-12.5">
 				{filteredGames.map((item: GameItemProps) => (
 					<GameItem
-						key={item.id}
-						id={item.id}
+						key={item._id}
+						_id={item._id}
 						name={item.name}
 						price={item.price}
 						desc={item.desc}

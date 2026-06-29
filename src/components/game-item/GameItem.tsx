@@ -4,7 +4,7 @@ import { CircleMinus, CirclePlus } from "lucide-react";
 import { StoreContext } from "../../context/storeContext";
 
 export type GameItemProps = {
-	id: number;
+	_id: number;
 	name: string;
 	price: number;
 	desc: string;
@@ -13,7 +13,7 @@ export type GameItemProps = {
 };
 
 export default function GameItem({
-	id,
+	_id,
 	name,
 	price,
 	desc,
@@ -25,25 +25,30 @@ export default function GameItem({
 		return <div>Loading...</div>;
 	}
 
-	const { cartItems, addToCart, removeFromCart } = context;
+	const { cartItems, addToCart, removeFromCart, URL } = context;
+	console.log(`Item ${_id} - ${name}:`, {
+		_id,
+		cartItems: cartItems[_id],
+		cartItemsObject: cartItems,
+	});
 	return (
 		<div className="w-full mx-auto rounded-[15px] shadow-md transition duration-300 animate-[fadeIn_1s] p-2">
 			<div className="relative">
 				<img
 					className="w-full rounded-t-[15px] rounded-b-[15px] rounded-bl-none"
-					src={image}
+					src={URL + "/images/" + image}
 					alt={name}
 				/>
-				{!cartItems[id] ? (
+				{!cartItems[_id] ? (
 					<CirclePlus
 						className="absolute bottom-3.5 right-3.5 cursor-pointer rounded-full bg-white"
-						onClick={() => addToCart(id)}
+						onClick={() => addToCart(_id)}
 					/>
 				) : (
 					<div className="absolute bottom-2 right-2 flex items-center gap-2.5 p-1.5 rounded-full bg-white shadow-lg hover:shadow-lg transition-shadow duration-200">
-						<CircleMinus onClick={() => removeFromCart(id)} />
-						<p>{cartItems[id]}</p>
-						<CirclePlus onClick={() => addToCart(id)} />
+						<CircleMinus onClick={() => removeFromCart(_id)} />
+						<p>{cartItems[_id]}</p>
+						<CirclePlus onClick={() => addToCart(_id)} />
 					</div>
 				)}
 			</div>

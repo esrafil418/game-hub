@@ -9,10 +9,11 @@ export default function Cart() {
 		useContext(StoreContext);
 
 	const navigate = useNavigate();
+
 	return (
 		<div className="mt-25 px-4 md:px-6 lg:px-8">
 			<div className="items">
-				{/* Desktop header - hidden on mobile */}
+				{/* Desktop header */}
 				<div className="hidden md:grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-gray-500 text-[max(1vw,12px)]">
 					<p>Items</p>
 					<p>Title</p>
@@ -23,44 +24,45 @@ export default function Cart() {
 				</div>
 				<br className="hidden md:block" />
 				<hr className="hidden md:block" />
+
 				{game_list.map(
 					(item: GameItemProps) =>
-						cartItems[item.id] > 0 && (
+						cartItems[item._id] > 0 && (
 							<div
-								key={item.id}
+								key={item._id}
 								className="grid grid-cols-[1fr_1fr_1fr] md:grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-start md:items-center gap-2 md:gap-4 py-4 border-b border-gray-200"
 							>
-								{/* Image - first column on mobile */}
+								{/* Image */}
 								<img
 									src={item.image}
-									alt="item"
+									alt={item.name}
 									className="w-16 h-16 object-cover rounded col-span-1 self-center"
 								/>
 
-								{/* Item details - mobile layout - middle column */}
+								{/* Mobile layout */}
 								<div className="md:hidden flex flex-col col-span-1 justify-center">
 									<p className="font-medium text-sm">{item.name}</p>
 									<div className="flex flex-wrap items-center gap-2 mt-0.5">
 										<span className="text-sm text-gray-600">${item.price}</span>
-										<span className="text-sm">Qty: {cartItems[item.id]}</span>
+										<span className="text-sm">Qty: {cartItems[item._id]}</span>
 										<span className="font-bold text-sm">
-											${item.price * cartItems[item.id]}
+											${item.price * cartItems[item._id]}
 										</span>
 									</div>
 								</div>
 
-								{/* Desktop layout - hidden on mobile */}
+								{/* Desktop layout */}
 								<p className="hidden md:block">{item.name}</p>
 								<p className="hidden md:block">${item.price}</p>
-								<p className="hidden md:block">{cartItems[item.id]}</p>
+								<p className="hidden md:block">{cartItems[item._id]}</p>
 								<p className="hidden md:block">
-									${item.price * cartItems[item.id]}
+									${item.price * cartItems[item._id]}
 								</p>
 
-								{/* X button - top right on mobile */}
+								{/* Remove button */}
 								<X
 									className="cursor-pointer justify-self-end md:justify-self-center self-start md:self-center"
-									onClick={() => removeFromCart(item.id)}
+									onClick={() => removeFromCart(item._id)}
 								/>
 							</div>
 						),
@@ -91,7 +93,7 @@ export default function Cart() {
 					<button
 						type="button"
 						onClick={() => navigate("/order")}
-						className="border-none text-white bg-turquoise w-full md:w-[max(15vw,200px)] py-3 rounded-sm cursor-pointer bg-teal-300 hover:bg-teal-500 hover:shadow-lg transition-all duration-200"
+						className="border-none text-white w-full md:w-[max(15vw,200px)] py-3 rounded-sm cursor-pointer bg-teal-300 hover:bg-teal-500 hover:shadow-lg transition-all duration-200"
 					>
 						Proceed to Checkout
 					</button>
