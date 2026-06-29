@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-	const { cartItems, game_list, removeFromCart, getTotalCartAmount } =
+	const { cartItems, game_list, removeFromCart, getTotalCartAmount, URL } =
 		useContext(StoreContext);
 
 	const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function Cart() {
 							>
 								{/* Image */}
 								<img
-									src={item.image}
+									src={URL + "/images/" + item.image}
 									alt={item.name}
 									className="w-16 h-16 object-cover rounded col-span-1 self-center"
 								/>
