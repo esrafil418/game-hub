@@ -26,16 +26,31 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 	const [token, setToken] = useState("");
 	const [game_list, setGameList] = useState<GameItemProps[]>([]);
 
-	const addToCart = (itemId: number) => {
+	const addToCart = async (itemId: number) => {
 		if (!cartItems[itemId]) {
 			setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
 		} else {
 			setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 		}
+		if (token) {
+			await axios.post(
+				URL + "/api/cart/add",
+				{ itemId },
+				{ headers: { token } },
+			);
+		}
 	};
 
-	const removeFromCart = (itemId: number) => {
+	const removeFromCart = async (itemId: number) => {
 		setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+
+		if (token) {
+			await axios.post(
+				URL + "/api/cart/remove",
+				{ itemId },
+				{ headers: { token } },
+			);
+		}
 	};
 
 	const getTotalCartAmount = () => {
@@ -58,6 +73,15 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		setGameList(response.data.data);
 	};
 
+	const loadCartData = async (token) => {
+		const response = await axios.post(
+			URL + "/api/cart/get",
+			{},
+			{ headers: { token } },
+		);
+		setCartItems(response.data.cartData);
+	};
+
 	useEffect(() => {
 		const storedToken = localStorage.getItem("token");
 		if (storedToken) {
@@ -66,6 +90,7 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 
 		async function loadData() {
 			await fetchGameList();
+			await loadCartData(localStorage.getItem("token"));
 		}
 		loadData();
 	}, []);
