@@ -52,6 +52,12 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		return totalAmount;
 	};
 
+	useEffect(() => {
+		if (localStorage.getItem("token")) {
+			setToken(localStorage.getItem("token"));
+		}
+	}, []);
+
 	const contextValue: StoreContextType = {
 		game_list,
 		cartItems,

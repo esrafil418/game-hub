@@ -16,7 +16,7 @@ type LoginData = {
 export default function LoginPopup({ setShowLogin }: LoginPopupProps) {
 	const { URL, setToken } = useContext(StoreContext);
 
-	const [currentState, setCurrentState] = useState("Login");
+	const [currentState, setCurrentState] = useState("Sign Up");
 
 	const [data, setData] = useState<LoginData>({
 		name: "",
