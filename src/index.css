@@ -2,13 +2,22 @@
 @import "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&amp;family=Outfit:wght@100..900&amp;display=swap";
 
 :root {
-  --font-comfortaa: "Comfortaa", cursive;
-  --font-outfit: "Outfit", sans-serif;
+	--font-comfortaa: "Comfortaa", cursive;
+	--font-outfit: "Outfit", sans-serif;
+}
+
+/* ✅ ADD THIS BLOCK - Creates custom utility classes */
+@utility font-outfit {
+	font-family: var(--font-outfit);
+}
+
+@utility font-comfortaa {
+	font-family: var(--font-comfortaa);
 }
 
 @layer base {
 	body {
-		@apply min-h-screen font-outfit;
+		@apply min-h-screen font-outfit; /* ✅ Now works correctly */
 	}
 
 	a {

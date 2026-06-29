@@ -233,7 +233,7 @@ export const game_list = [
 		category_id: 7,
 	},
 	{
-		id: 11,
+		id: 12,
 		name: "Need for Speed Heat",
 		image: urlImages.Need_for_Speed_Heat,
 		price: 66,

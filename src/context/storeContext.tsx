@@ -9,6 +9,9 @@ interface StoreContextType {
 	addToCart: (itemId: number) => void;
 	removeFromCart: (itemId: number) => void;
 	getTotalCartAmount: () => number;
+	URL: string;
+	token: string;
+	setToken: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const StoreContext = createContext<StoreContextType | null>(null);
@@ -19,6 +22,8 @@ interface StoreContextProviderProps {
 
 const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 	const [cartItems, setCartItems] = useState<{ [key: number]: number }>({});
+	const URL = "http://localhost:4000";
+	const [token, setToken] = useState("");
 
 	const addToCart = (itemId: number) => {
 		if (!cartItems[itemId]) {
@@ -54,6 +59,9 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 		addToCart,
 		removeFromCart,
 		getTotalCartAmount,
+		URL,
+		token,
+		setToken,
 	};
 
 	return (
