@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import type { GameItemProps } from "../components/game-item/GameItem";
 import axios from "axios";
 
-interface StoreContextType {
+export interface StoreContextType {
 	game_list: GameItemProps[];
 	cartItems: { [key: number]: number };
 	setCartItems: React.Dispatch<React.SetStateAction<{ [key: number]: number }>>;
