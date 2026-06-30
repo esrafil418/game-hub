@@ -1,6 +1,6 @@
 # 🎮 Game Hub - Full Stack E-Commerce Platform
 
-![Game Hub Banner](/public/github/games.png)
+![Game Hub Banner](/src/assets/games.png)
 
 ## 🔗 Repository Links
 
@@ -31,7 +31,7 @@
 
 ---
 
-![Admin Panel](/public/github/admin%20panel.png)
+![Admin Panel](/src/assets/admin%20panel.png)
 
 ---
 
@@ -62,7 +62,7 @@
 
 ---
 
-![Home Page](/public/github/tablet.png)
+![Home Page](/src/assets/tablet.png)
 
 ---
 
@@ -70,7 +70,7 @@
 
 The application implements a secure authentication system using **JWT (JSON Web Tokens)** and **Bcrypt** for password security with MongoDB as the user data store.
 
-![User Authentication](/public/github/users-mongodb.png)
+![User Authentication](/src/assets/users-mongodb.png)
 
 ---
 
@@ -100,24 +100,24 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 
 ---
 
-![Game Catalog](/public/github/iPad.png)
+![Game Catalog](/src/assets/iPad.png)
 
 ---
 
-![Shopping Cart](/public/github/mobile-cart.png)
+![Shopping Cart](/src/assets/mobile-cart.png)
 
 ---
 
-![Mobile Page](/public/github/mobile-header.png)
+![Mobile Page](/src/assets/mobile-header.png)
 
 ---
 
-![Sign Up](/public/github/signup.png)
+![Sign Up](/src/assets/signup.png)
 
 ---
 
-![Admin Panel](/public/github/admin%20panel%20list.png)
+![Admin Panel](/src/assets/admin%20panel%20list.png)
 
 ---
 
-![MongoDB](/public/github/games-mongodb.png)
+![MongoDB](/src/assets/games-mongodb.png)
