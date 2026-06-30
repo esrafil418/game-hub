@@ -6,6 +6,7 @@ import PlaceOrder from "./pages/placeOrder/PlaceOrder";
 import Footer from "./components/footer/Footer";
 import { useState } from "react";
 import LoginPopup from "./components/login-popup/LoginPopup";
+import Verify from "./pages/verify/Verify";
 
 export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
@@ -18,6 +19,7 @@ export default function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/order" element={<PlaceOrder />} />
+					<Route path="/verify" element={<Verify />} />
 				</Routes>
 			</div>
 			<Footer />
