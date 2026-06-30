@@ -141,10 +141,14 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 									: "opacity-0 invisible pointer-events-none"
 							}`}
 						>
-							<li className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-[#262626] text-sm sm:text-base">
+							<button
+								type="button"
+								onClick={() => navigate("/myorders")}
+								className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-[#262626] text-sm sm:text-base w-full"
+							>
 								<ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#676767]" />
 								<p>Orders</p>
-							</li>
+							</button>
 							<hr className="border-gray-200" />
 							<button
 								type="button"
