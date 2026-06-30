@@ -10,17 +10,20 @@ export default function Verify() {
 	const { URL } = useContext(StoreContext);
 	const navigate = useNavigate();
 
-
 	const verifyPayment = async () => {
-		const response = await axios.post(URL + "/api/order/verify", {
-			success,
-			orderId,
-		});
-		if (response.data.success) {
-			navigate("/myorders");
-		} else {
-			navigate("/");
+		try {
+			const response = await axios.post(URL + "/api/order/verify", {
+				success,
+				orderId,
+			});
+			if (response.data.success) {
+				navigate("/myorders");
+				return;
+			}
+		} catch {
+			// fall through to failure navigation
 		}
+		navigate("/");
 	};
 
 	useEffect(() => {

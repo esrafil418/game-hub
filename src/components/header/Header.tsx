@@ -17,12 +17,12 @@ export default function Header() {
 						greatest video games!
 					</p>
 
-					<button
-						type="button"
-						className="mt-3 sm:mt-4 md:mt-5 border-none text-[#49557e] font-semibold px-6 py-2.5 sm:px-8 sm:py-3 md:px-[2.3vw] md:py-[1vw] bg-white/95 backdrop-blur-sm text-sm sm:text-base md:text-[max(1vw,14px)] rounded-full cursor-pointer transition-all duration-300 hover:bg-white hover:shadow-xl shadow-md active:scale-95"
+					<a
+						href="`#game-display`"
+						className="inline-flex mt-3 sm:mt-4 md:mt-5 text-[`#49557e`] font-semibold px-6 py-2.5 sm:px-8 sm:py-3 md:px-[2.3vw] md:py-[1vw] bg-white/95 backdrop-blur-sm text-sm sm:text-base md:text-[max(1vw,14px)] rounded-full transition-all duration-300 hover:bg-white hover:shadow-xl shadow-md active:scale-95"
 					>
 						Explore Games
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

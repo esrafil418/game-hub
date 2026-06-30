@@ -60,10 +60,14 @@ export default function Cart() {
 								</p>
 
 								{/* Remove button */}
-								<X
-									className="cursor-pointer justify-self-end md:justify-self-center self-start md:self-center"
+								<button
+									type="button"
+									aria-label={`Remove ${item.name} from cart`}
 									onClick={() => removeFromCart(item._id)}
-								/>
+									className="justify-self-end md:justify-self-center self-start md:self-center cursor-pointer border-none bg-transparent p-0"
+								>
+									<X aria-hidden="true" />
+								</button>
 							</div>
 						),
 				)}

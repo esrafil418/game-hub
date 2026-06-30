@@ -16,8 +16,8 @@ export default function ExploreCategory({
 			</h1>
 
 			<p className="max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] text-[#808080] text-sm sm:text-base md:text-lg leading-relaxed">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, ipsum
-				dolor sit amet consectetur adipisicing elit. Veniam.
+				Discover amazing games across all genres. Click on any category to find
+				your next favorite game today!
 			</p>
 
 			<div className="flex justify-start sm:justify-between items-center gap-4 sm:gap-6 md:gap-7.5 text-center my-5 overflow-x-scroll scrollbar-hide px-4 -mx-4 pb-4">

@@ -8,8 +8,11 @@ import {
 	LogOut,
 } from "lucide-react";
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { StoreContext } from "../../context/storeContext";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import {
+	StoreContext,
+	type StoreContextType,
+} from "../../context/storeContext";
 
 interface NavbarProps {
 	setShowLogin: (value: boolean) => void;
@@ -19,12 +22,13 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 	const [menu, setMenu] = useState("home");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+	const { getTotalCartAmount, token, setToken } =
+		useContext<StoreContextType>(StoreContext);
 
 	const closeMenu = () => setIsOpen(false);
 
 	const menuItems = [
-		{ id: "home", label: "Home", href: "#" },
+		{ id: "home", label: "Home", href: "#home" },
 		{ id: "categories", label: "Categories", href: "#explore-category" },
 		{ id: "mobile app", label: "Mobile App", href: "#app-download" },
 		{ id: "contact us", label: "Contact Us", href: "#footer" },
@@ -36,6 +40,12 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 		href: string,
 	) => {
 		e.preventDefault();
+
+		if (location.pathname !== "/") {
+			navigate(`/${href}`);
+			setIsMenuOpen(false);
+			return;
+		}
 		const targetId = href.replace("#", "");
 		const element = document.getElementById(targetId);
 
@@ -50,11 +60,12 @@ export default function Navbar({ setShowLogin }: NavbarProps) {
 	};
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	// Logout handler
 	const handleLogout = () => {
 		localStorage.removeItem("token");
-		setToken(null);
+		setToken("");
 		closeMenu();
 		navigate("/");
 	};

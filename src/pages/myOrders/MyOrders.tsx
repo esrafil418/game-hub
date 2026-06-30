@@ -40,7 +40,9 @@ export default function MyOrders() {
 	useEffect(() => {
 		if (token) {
 			fetchOrders();
+			return;
 		}
+		setLoading(false);
 	}, [token]);
 
 	if (loading) {
@@ -85,7 +87,7 @@ export default function MyOrders() {
 						{/* Items List */}
 						<p className="text-[#262626] text-sm sm:text-base">
 							{order.items.map((item, idx) => (
-								<span key={idx}>
+								<span key={order._id}>
 									{item.name} x {item.quantity}
 									{idx < order.items.length - 1 && ", "}
 								</span>
@@ -110,13 +112,7 @@ export default function MyOrders() {
 							</b>
 						</div>
 
-						{/* Track Order Button */}
-						<button
-							type="button"
-							className="col-span-1 sm:col-span-1 px-4 py-2 bg-[#49557e] text-white text-sm font-medium rounded-full hover:bg-[#5a6a8e] transition-colors duration-200 cursor-pointer"
-						>
-							Track Order
-						</button>
+						<p className="text-sm text-gray-400 italic">Tracking coming soon</p>
 					</div>
 				))}
 			</div>

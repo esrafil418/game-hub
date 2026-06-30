@@ -22,16 +22,12 @@ interface StoreContextProviderProps {
 
 const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 	const [cartItems, setCartItems] = useState<{ [key: number]: number }>({});
-	const URL = "http://localhost:4000";
+	const URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
 	const [token, setToken] = useState("");
 	const [game_list, setGameList] = useState<GameItemProps[]>([]);
 
 	const addToCart = async (itemId: number) => {
-		if (!cartItems[itemId]) {
-			setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-		} else {
-			setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-		}
+		setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] ?? 0) + 1 }));
 		if (token) {
 			await axios.post(
 				URL + "/api/cart/add",
@@ -42,7 +38,14 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 	};
 
 	const removeFromCart = async (itemId: number) => {
-		setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+		setCartItems((prev) => {
+			const nextQuantity = (prev[itemId] ?? 0) - 1;
+			if (nextQuantity <= 0) {
+				const { [itemId]: _removed, ...rest } = prev;
+				return rest;
+			}
+			return { ...prev, [itemId]: nextQuantity };
+		});
 
 		if (token) {
 			await axios.post(
@@ -84,13 +87,17 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 
 	useEffect(() => {
 		const storedToken = localStorage.getItem("token");
-		if (storedToken) {
-			setToken(storedToken);
-		}
 
 		async function loadData() {
-			await fetchGameList();
-			await loadCartData(localStorage.getItem("token"));
+			try {
+				await fetchGameList();
+				if (storedToken) {
+					setToken(storedToken);
+					await loadCartData(storedToken);
+				}
+			} catch (error) {
+				console.error("Failed to initialize store context:", error);
+			}
 		}
 		loadData();
 	}, []);

@@ -46,8 +46,6 @@ bower_components/
 jspm_packages/
 .pnpm-store/
 .yarn/
-.yarnrc
-.yarnrc.yml
 .npm/
 
 # ====================================
@@ -128,16 +126,6 @@ junit.xml
 *.spec.tsx
 
 # ====================================
-# Storybook
-# ====================================
-storybook-static/
-docs/
-*.stories.js
-*.stories.ts
-*.stories.jsx
-*.stories.tsx
-
-# ====================================
 # Framework Specific - React
 # ====================================
 # Create React App
@@ -149,7 +137,6 @@ docs/
 # Next.js
 /.next/
 /out/
-/server/
 /standalone/
 
 # Gatsby
@@ -179,7 +166,6 @@ docs/
 /.vite
 /vite.config.js.timestamp-*
 /vite.config.ts.timestamp-*
-*.timestamp-*
 
 # ====================================
 # Framework Specific - Angular
@@ -248,8 +234,6 @@ sw.*.js
 workbox-*.js
 service-worker.js
 service-worker.*.js
-*.worker.js
-*.worker.ts
 
 # ====================================
 # i18n / Localization (Generated)
@@ -321,7 +305,6 @@ docker-compose.dev.yml
 *.tmp
 *.temp
 *~
-*.lock
 *.pid
 *.seed
 Session.vim
@@ -350,8 +333,8 @@ Session.vim
 /icons-generated/
 
 # API mocks
-/mocks/
-/__mocks__/
+Only ignore generated mocks if applicable
+/mocks/generated/
 
 # Storybook iframes
 iframe.html

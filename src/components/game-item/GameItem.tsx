@@ -40,15 +40,31 @@ export default function GameItem({
 					alt={name}
 				/>
 				{!cartItems[_id] ? (
-					<CirclePlus
-						className="absolute bottom-3.5 right-3.5 cursor-pointer rounded-full bg-white"
+					<button
+						type="button"
+						aria-label={`Add ${name} to cart`}
+						className="absolute bottom-3.5 right-3.5 rounded-full bg-white"
 						onClick={() => addToCart(_id)}
-					/>
+					>
+						<CirclePlus />
+					</button>
 				) : (
 					<div className="absolute bottom-2 right-2 flex items-center gap-2.5 p-1.5 rounded-full bg-white shadow-lg hover:shadow-lg transition-shadow duration-200">
-						<CircleMinus onClick={() => removeFromCart(_id)} />
+						<button
+							type="button"
+							aria-label={`Remove ${name} from cart`}
+							onClick={() => removeFromCart(_id)}
+						>
+							<CircleMinus />
+						</button>
 						<p>{cartItems[_id]}</p>
-						<CirclePlus onClick={() => addToCart(_id)} />
+						<button
+							type="button"
+							aria-label={`Add another ${name} to cart`}
+							onClick={() => addToCart(_id)}
+						>
+							<CirclePlus />
+						</button>
 					</div>
 				)}
 			</div>

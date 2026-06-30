@@ -32,21 +32,30 @@ export default function LoginPopup({ setShowLogin }: LoginPopupProps) {
 
 	const onLogin = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		let newUrl = URL;
-		if (currentState === "Login") {
-			newUrl += "/api/user/login";
-		} else {
-			newUrl += "/api/user/register";
-		}
+		try {
+			let newUrl = URL;
+			if (currentState === "Login") {
+				newUrl += "/api/user/login";
+			} else {
+				newUrl += "/api/user/register";
+			}
 
-		const response = await axios.post(newUrl, data);
+			const response = await axios.post(newUrl, data);
 
-		if (response.data.success) {
-			setToken(response.data.token);
-			localStorage.setItem("token", response.data.token);
-			setShowLogin(false);
-		} else {
-			alert(response.data.message);
+			if (response.data.success) {
+				setToken(response.data.token);
+				localStorage.setItem("token", response.data.token);
+				setShowLogin(false);
+			} else {
+				alert(response.data.message);
+			}
+		} catch (error) {
+			console.error("Auth error:", error);
+			if (axios.isAxiosError(error) && !error.response) {
+				alert("❌ Network error! Please check your internet connection.");
+			} else {
+				alert("❌ Something went wrong. Please try again later.");
+			}
 		}
 	};
 
@@ -58,7 +67,14 @@ export default function LoginPopup({ setShowLogin }: LoginPopupProps) {
 			>
 				<div className="flex justify-between items-center text-black">
 					<div className="text-xl font-bold">{currentState}</div>
-					<X onClick={() => setShowLogin(false)} className="cursor-pointer" />
+					<button
+						type="button"
+						onClick={() => setShowLogin(false)}
+						aria-label="Close login popup"
+						className="cursor-pointer"
+					>
+						<X />
+					</button>
 				</div>
 				<div className="flex flex-col gap-4 md:gap-5">
 					{currentState === "Login" ? null : (

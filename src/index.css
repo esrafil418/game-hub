@@ -6,7 +6,6 @@
 	--font-outfit: "Outfit", sans-serif;
 }
 
-/* ✅ ADD THIS BLOCK - Creates custom utility classes */
 @utility font-outfit {
 	font-family: var(--font-outfit);
 }

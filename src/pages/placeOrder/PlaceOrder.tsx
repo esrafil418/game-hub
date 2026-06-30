@@ -33,6 +33,8 @@ export default function PlaceOrder() {
 		country: "",
 		phone: "",
 	});
+	const [submitting, setSubmitting] = useState(false);
+	const [isStoreLoaded, setIsStoreLoaded] = useState(false);
 
 	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const name = event.target.name;
@@ -42,43 +44,59 @@ export default function PlaceOrder() {
 
 	const placeOrder = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		let orderItems: Array<{
-			_id: string | number;
-			quantity: number;
-			[key: string]: any;
-		}> = [];
-		game_list.forEach((item) => {
-			if (cartItems[item._id] > 0) {
-				let itemInfo = { ...item, quantity: cartItems[item._id] };
-				orderItems.push(itemInfo);
+		if (submitting) return;
+		setSubmitting(true);
+		try {
+			let orderItems: Array<{
+				_id: string | number;
+				quantity: number;
+				[key: string]: any;
+			}> = [];
+			game_list.forEach((item) => {
+				if (cartItems[item._id] > 0) {
+					let itemInfo = { ...item, quantity: cartItems[item._id] };
+					orderItems.push(itemInfo);
+				}
+			});
+			let orderData = {
+				address: data,
+				items: orderItems,
+				amount: getTotalCartAmount() + 2,
+			};
+			let response = await axios.post(URL + "/api/order/place", orderData, {
+				headers: { token },
+			});
+			if (response.data.success) {
+				const { session_url } = response.data;
+				window.location.replace(session_url);
+			} else {
+				alert("Error");
 			}
-		});
-		let orderData = {
-			address: data,
-			items: orderItems,
-			amount: getTotalCartAmount() + 2,
-		};
-		let response = await axios.post(URL + "/api/order/place", orderData, {
-			headers: { token },
-		});
-		if (response.data.success) {
-			const { session_url } = response.data;
-			window.location.replace(session_url);
-		} else {
-			alert("Error");
+		} catch {
+			alert("Unable to place order. Please try again.");
+		} finally {
+			setSubmitting(false);
 		}
 	};
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (game_list.length > 0) {
+			setIsStoreLoaded(true);
+		}
+	}, [game_list]);
+
+	useEffect(() => {
+		if (!isStoreLoaded) {
+			return;
+		}
+
 		if (!token) {
 			navigate("/cart");
 		} else if (getTotalCartAmount() === 0) {
-			{
-				navigate("/cart");
-			}
+			navigate("/cart");
 		}
-	}, [token]);
+	}, [token, isStoreLoaded, getTotalCartAmount, navigate]);
 
 	return (
 		<form
@@ -226,9 +244,10 @@ export default function PlaceOrder() {
 						</div>
 						<button
 							type="submit"
+							disabled={submitting}
 							className="border-none text-white bg-turquoise w-full md:w-full py-3 rounded-sm cursor-pointer bg-teal-300 hover:bg-teal-500 hover:shadow-lg transition-all duration-200"
 						>
-							Proceed to Payment
+							{submitting ? "Processing..." : "Proceed to Payment"}
 						</button>
 					</div>
 				</div>

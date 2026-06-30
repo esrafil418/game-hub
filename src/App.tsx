@@ -8,6 +8,7 @@ import { useState } from "react";
 import LoginPopup from "./components/login-popup/LoginPopup";
 import Verify from "./pages/verify/Verify";
 import MyOrders from "./pages/myOrders/MyOrders";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
@@ -21,7 +22,14 @@ export default function App() {
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/order" element={<PlaceOrder />} />
 					<Route path="/verify" element={<Verify />} />
-					<Route path="/myorders" element={<MyOrders />} />
+					<Route
+						path="/myorders"
+						element={
+							<ProtectedRoute>
+								<MyOrders />
+							</ProtectedRoute>
+						}
+					/>
 				</Routes>
 			</div>
 			<Footer />

@@ -10,10 +10,9 @@ export default function Footer() {
 				<div className="flex flex-col items-start gap-5">
 					<h3 className="text-3xl text-red-700">Game hub</h3>
 					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-						illum culpa aliquam aspernatur excepturi blanditiis delectus
-						asperiores ex at quae. Quo quod veniam enim dolores, dignissimos
-						error adipisci praesentium minus.
+						Your ultimate destination for premium gaming experiences. We curate
+						the best games across all genres - from action-packed adventures to
+						immersive RPGs. Join our community of gamers today!
 					</p>
 					<div className="flex gap-2">
 						<Rss className="cursor-pointer" />
@@ -33,14 +32,14 @@ export default function Footer() {
 				<div className="flex flex-col items-start gap-5">
 					<h2 className="text-3xl text-white">Get in Touch</h2>
 					<ul>
-						<li>+989372282356</li>
-						<li className="cursor-pointer">esrafil.s.r.man418@gmail.com</li>
+						<li>📞 +1 (555) 123-4567</li>
+						<li className="cursor-pointer">support@gamehub.com</li>
 					</ul>
 				</div>
 			</div>
 			<hr className="w-full h-0.5 my-5 bg-sky-300 border-none" />
 			<p className="copyright">
-				Copyright 2024. GameHub.com - All Right Reserved
+				Copyright {new Date().getFullYear()}. GameHub.com - All Right Reserved
 			</p>
 		</div>
 	);
