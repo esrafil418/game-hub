@@ -100,10 +100,6 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 
 ---
 
-![Game Catalog](/src/assets/iPad.png)
-
----
-
 ![Shopping Cart](/src/assets/mobile-cart.png)
 
 ---
