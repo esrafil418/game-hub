@@ -78,9 +78,9 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
 				_id: game._id,
 				name: game.name,
 				price: game.price,
-				desc: game.description, // Map description to desc
+				description: game.description,
 				image: game.image,
-				category: game.category, // Keep as string for filtering
+				category: game.category,
 			}));
 			setGameList(mappedGames);
 		} catch (error) {
