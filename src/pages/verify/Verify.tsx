@@ -8,19 +8,24 @@ export default function Verify() {
 	const success = searchParams.get("success");
 	const orderId = searchParams.get("orderId");
 	const { URL } = useContext(StoreContext);
-    const navigate = useNavigate()
-    
-    const verifyPayment = async => {
-        const response = await axios.post(URL+"/api/order/verify", {success, orderId})
-        if (response.data.success) {
-      navigate("/myorders")
-        }
-        else {navigate("/")}
-    }
+	const navigate = useNavigate();
 
-    useEffect(() => {
-        verifyPayment()
-    }, [])
+
+	const verifyPayment = async () => {
+		const response = await axios.post(URL + "/api/order/verify", {
+			success,
+			orderId,
+		});
+		if (response.data.success) {
+			navigate("/myorders");
+		} else {
+			navigate("/");
+		}
+	};
+
+	useEffect(() => {
+		verifyPayment();
+	}, []);
 
 	return (
 		<div className="min-h-[60vh] grid place-items-center">
