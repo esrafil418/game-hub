@@ -7,16 +7,17 @@ export type GameItemProps = {
 	_id: number;
 	name: string;
 	price: number;
-	desc: string;
+	description: string;
 	image: string;
 	category_id?: number;
+	category?: string;
 };
 
 export default function GameItem({
 	_id,
 	name,
 	price,
-	desc,
+	description,
 	image,
 }: GameItemProps) {
 	const context = useContext(StoreContext);
@@ -77,7 +78,7 @@ export default function GameItem({
 						className="w-16"
 					/>
 				</div>
-				<p className="text-gray-500 text-xs line-clamp-2">{desc}</p>
+				<p className="text-gray-500 text-xs line-clamp-2">{description}</p>
 				<p className="text-red-500 text-xl font-medium my-2.5">${price}</p>
 			</div>
 		</div>

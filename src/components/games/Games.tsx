@@ -31,9 +31,7 @@ export default function Games({ genre }: GamesProps) {
 	const filteredGames =
 		genre === "All"
 			? game_list
-			: game_list.filter(
-					(item: GameItemProps) => item.category_id === categoryId,
-				);
+			: game_list.filter((item: GameItemProps) => item.category === genre);
 
 	if (!filteredGames || filteredGames.length === 0) {
 		return (
@@ -58,7 +56,7 @@ export default function Games({ genre }: GamesProps) {
 						_id={item._id}
 						name={item.name}
 						price={item.price}
-						desc={item.desc}
+						description={item.description}
 						image={item.image}
 					/>
 				))}
