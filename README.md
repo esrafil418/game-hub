@@ -93,10 +93,10 @@ cd game-hub
 
 ## Environment Variables:
 
-PORT=4000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-STRIPE_SECRET_KEY=your_stripe_secret_key
+- PORT=4000
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret_key
+- STRIPE_SECRET_KEY=your_stripe_secret_key
 
 ---
 
