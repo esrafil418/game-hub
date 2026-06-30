@@ -85,7 +85,7 @@ The application implements a secure authentication system using **JWT (JSON Web 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/game-hub.git
+git clone https://github.com/esrafil418/game-hub.git
 cd game-hub
 ```
 
