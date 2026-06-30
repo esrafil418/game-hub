@@ -1,14 +1,22 @@
 @import "tailwindcss";
 @import "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&amp;family=Outfit:wght@100..900&amp;display=swap";
 
-@theme {
+:root {
 	--font-comfortaa: "Comfortaa", cursive;
 	--font-outfit: "Outfit", sans-serif;
 }
 
+@utility font-outfit {
+	font-family: var(--font-outfit);
+}
+
+@utility font-comfortaa {
+	font-family: var(--font-comfortaa);
+}
+
 @layer base {
 	body {
-		@apply min-h-screen font-outfit;
+		@apply min-h-screen font-outfit; /* ✅ Now works correctly */
 	}
 
 	a {
@@ -17,5 +25,29 @@
 
 	.app {
 		@apply w-4/5 mx-auto;
+	}
+}
+
+.header-img {
+	background-image: url("./assets/header.jpg");
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@layer utilities {
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
 	}
 }
